@@ -54,13 +54,17 @@ mutate(year=year(SDATE)) %>%
 group_by(year) %>%  
 distinct(SUBSTUDY) 
 
-#WY21 data in ERDP
+#WY21 WQ data in ERDP
 ERDP_WQ_WY21_Data <- ERDP_WQ_DATA %>%
 filter(ymd(SDATE) <"2021-05-01",ymd(SDATE)>="2020-05-01")
 
-#WY21 data in DBHYDRO
+#WY21 WQ data in DBHYDRO
 DBHYDRO_WQ_WY21_Data <- L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW %>%
 filter(ymd_hms(DATE_COLLECTED) <"2021-05-01 00:00:00",ymd_hms(DATE_COLLECTED)>="2019-05-01 00:00:00")
+
+#WY21 Soils data in ERDP
+ERDP_Soils_WY21_Data <- ERDP_Soil_Data %>%
+filter(ymd_hms(SDATE) <"2021-05-01 00:00:00",ymd_hms(SDATE)>="2020-05-01 00:00:00")
 
 # DQOs Grabs------------------------------------------------------------
 #Completeness

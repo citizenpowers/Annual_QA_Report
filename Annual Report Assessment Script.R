@@ -26,6 +26,8 @@ L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW <- read_csv("Data/L8FEB_Data.csv")
 PFLUX_SOIL_ERDP_DATA <- read_csv("Data/PFLUX_Data.csv")
 PFLUX_ERDP_WQ_DATA <- read_csv("Data/PFLUX_WQ_Data.csv")
 ERDP_WQ_DATA <- read_csv("Data/ERDP_WQ_DATA.csv")
+PDYNAMICS_ERDP_WQ_DATA <- read_csv("Data/PDYNAMICS_ERDP_WQ_DATA.csv")
+PDYNAMICS_ERDP_SOIL_DATA <- read_csv("Data/PDYNAMICS_ERDP_SOIL_DATA.csv")
 
 write.csv(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW,file="./Data/L8FEB_Data.csv")
 write.csv(PFLUX_SOIL_ERDP_DATA,file="./Data/PFLUX_Data.csv")
@@ -68,64 +70,49 @@ filter(ymd_hms(SDATE) <"2021-05-01 00:00:00",ymd_hms(SDATE)>="2020-05-01 00:00:0
 
 # DQOs Grabs------------------------------------------------------------
 #Completeness
-write_csv(bind_rows(DBHYDRO_Completeness(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),
-                    ERDP_Completeness(Cattail_ERDP_WQ_DATA),
-                    ERDP_Completeness(PFLUX_ERDP_WQ_DATA)),path="./DQO Files/Completeness.csv")                        #Completeness
+write_csv(bind_rows(DBHYDRO_Completeness(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
+                    ERDP_Completeness(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA))),path="./DQO Files/Completeness.csv")                        #Completeness
 
-write_csv(bind_rows(DBHYDRO_Completeness_Parameters(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),
-                    ERDP_Completeness_Parameters(Cattail_ERDP_WQ_DATA),
-                    ERDP_Completeness_Parameters(PFLUX_ERDP_WQ_DATA)),path="./DQO Files/Completeness_Parameters.csv")  #Completeness with Parameters
+write_csv(bind_rows(DBHYDRO_Completeness_Parameters(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
+                    ERDP_Completeness_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA))),path="./DQO Files/Completeness_Parameters.csv")  #Completeness with Parameters
+
+#No replicate samples collected? 
 #Precision
-write_csv(na.omit(bind_rows(DBHYDRO_Precision(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),
-                            ERDP_Precision(Cattail_ERDP_WQ_DATA),
-                            ERDP_Precision(REST_ERDP_WQ_DATA),
-                            ERDP_Precision(PTS_ERDP_WQ_DATA),
-                            ERDP_Precision(PFLUX_ERDP_WQ_DATA))),path="./DQO Files/Precision.csv")   #Precision
-write_csv(bind_rows(DBHYDRO_Precision_Parameters(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),
-                    ERDP_Precision_Parameters(Cattail_ERDP_WQ_DATA),
+write_csv(na.omit(bind_rows(ERDP_Precision(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA)))),path="./DQO Files/Precision.csv")   
+#Precision
+write_csv(bind_rows(DBHYDRO_Precision_Parameters(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
+                    ERDP_Precision_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA)),
                     ERDP_Precision_Parameters(REST_ERDP_WQ_DATA),
                     ERDP_Precision_Parameters(PTS_ERDP_WQ_DATA),
                     ERDP_Precision_Parameters(PFLUX_ERDP_WQ_DATA)),path="./DQO Files/Precision_Parameters.csv")   #Precision with parameters
 
 #Accuracy
-write_csv(bind_rows(DBHYDRO_Accuracy(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),
-                    ERDP_Accuracy(Cattail_ERDP_WQ_DATA),
-                    ERDP_Accuracy(REST_ERDP_WQ_DATA),
-                    ERDP_Accuracy(PTS_ERDP_WQ_DATA),
-                    ERDP_Accuracy(PFLUX_ERDP_WQ_DATA)),path="./DQO Files/Accuracy.csv")   #Precision
-write_csv(bind_rows(DBHYDRO_Accuracy_Parameters(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),
-                    ERDP_Accuracy_Parameters(Cattail_ERDP_WQ_DATA),
-                    ERDP_Accuracy_Parameters(REST_ERDP_WQ_DATA),
-                    ERDP_Accuracy_Parameters(PTS_ERDP_WQ_DATA),
-                    ERDP_Accuracy_Parameters(PFLUX_ERDP_WQ_DATA)),path="./DQO Files/Accuracy_Parameters.csv")   #Precision
+write_csv(bind_rows(DBHYDRO_Accuracy(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
+                    ERDP_Accuracy(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA))),path="./DQO Files/Accuracy.csv")   #Precision
+
+write_csv(bind_rows(DBHYDRO_Accuracy_Parameters(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
+                    ERDP_Accuracy_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA))),path="./DQO Files/Accuracy_Parameters.csv")   #Precision
+
 
 # DQOs autosampler --------------------------------------------------------
 #Completeness
-write_csv(bind_rows(ERDP_Completeness_Autosampler(PFLUX_ERDP_WQ_DATA),
-                    # ERDP_Completeness_Autosampler(Cattail_ERDP_WQ_DATA),     #Cattail removed since it has no AS
-                    ERDP_Completeness_Autosampler(REST_ERDP_WQ_DATA),
-                    ERDP_Completeness_Autosampler(PTS_ERDP_WQ_DATA),
-                    DBHYDRO_Completeness_Autosampler(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),path="./DQO Files/Completeness_Autosamplers.csv")                        #Completeness
-write_csv(bind_rows(ERDP_Completeness_Autosampler_Parameters(PFLUX_ERDP_WQ_DATA),
-                    #ERDP_Completeness_Autosampler_Parameters(Cattail_ERDP_WQ_DATA),  #Cattail removed since it has no AS
-                    ERDP_Completeness_Autosampler_Parameters(REST_ERDP_WQ_DATA),
-                    ERDP_Completeness_Autosampler_Parameters(PTS_ERDP_WQ_DATA),
-                    DBHYDRO_Completeness_Parameters_Autosampler(PARAMETER_Names(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),path="./DQO Files/Completeness_Autosamplers_Parameters.csv")  #Completeness with Parameters
+write_csv(bind_rows(DBHYDRO_Completeness_Autosampler(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)))),path="./DQO Files/Completeness_Autosamplers.csv")                        #Completeness
+
+write_csv(bind_rows(DBHYDRO_Completeness_Parameters_Autosampler(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)))),path="./DQO Files/Completeness_Autosamplers_Parameters.csv")  #Completeness with Parameters
+
 #Accuracy
-write_csv(bind_rows(ERDP_Autosampler_Accuracy(PFLUX_ERDP_WQ_DATA),
-                    DBHYDRO_Autosampler_Accuracy(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),path="./DQO Files/Accuracy_Autosamplers.csv")
-write_csv(bind_rows(ERDP_Accuracy_Autosampler_Parameters(PFLUX_ERDP_WQ_DATA) ,
-                    DBHYDRO_Accuracy_Autosampler_Parameters(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW)),path="./DQO Files/Accuracy_Autosamplers_Parameters.csv")
+write_csv(bind_rows(DBHYDRO_Autosampler_Accuracy(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),path="./DQO Files/Accuracy_Autosamplers.csv")
+
+write_csv(bind_rows(DBHYDRO_Accuracy_Autosampler_Parameters(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),path="./DQO Files/Accuracy_Autosamplers_Parameters.csv")
 
 
 # DQOs Soils  -------------------------------------------------------------
 #Completeness
-write_csv(ERDP_Soil_Completeness(PFLUX_SOIL_ERDP_DATA),path="./DQO Files/Completeness_Soils.csv")             #Completeness
-write_csv(ERDP_Soil_Completeness_Parameters(PFLUX_SOIL_ERDP_DATA),path="./DQO Files/Completeness_Soils_Parameters.csv")  #Completeness with Parameters
+write_csv(ERDP_Soil_Completeness(ERDP_Time_Filter(PDYNAMICS_ERDP_SOIL_DATA)),path="./DQO Files/Completeness_Soils.csv")             #Completeness
+write_csv(ERDP_Soil_Completeness_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_SOIL_DATA)),path="./DQO Files/Completeness_Soils_Parameters.csv")  #Completeness with Parameters
 #Precision
-write_csv(ERDP_Precision_Soil(PFLUX_SOIL_ERDP_DATA),path="./DQO Files/Precision_Soils.csv")             #Precision
-write_csv(ERDP_Precision_Soil_Parameters(PFLUX_SOIL_ERDP_DATA),path="./DQO Files/Precision_Soils_Parameters.csv")  #Precision with Parameters
-
+write_csv(ERDP_Precision_Soil(ERDP_Time_Filter(PDYNAMICS_ERDP_SOIL_DATA)),path="./DQO Files/Precision_Soils.csv")             #Precision
+write_csv(ERDP_Precision_Soil_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_SOIL_DATA)),path="./DQO Files/Precision_Soils_Parameters.csv")  #Precision with Parameters
 
 # DBHYDRO Grab Functions -------------------------------------------------------
 
@@ -598,6 +585,7 @@ DBHYDRO_Completeness_Parameters_Autosampler  <- function(df)
   return(df1)
 }
 
+
 DBHYDRO_Completeness_Autosampler  <- function(df)
 {
   df1 <- df  %>%
@@ -764,3 +752,18 @@ Find_FD_Soils_ERDP  <- function(df)
     rename(FD="RESULT")
   return(df1)
 }
+
+ERDP_Time_Filter <-function(df)
+{  
+  df1 <-df  %>%
+filter(ymd_hms(SDATE) <Latest_Collection_date,ymd_hms(SDATE)>=Earliest_Collection_date)
+  return(df1)
+}  
+
+DBHYDRO_Time_Filter <-function(df)
+{  
+  df1 <-df  %>%
+  filter(ymd_hms(DATE_COLLECTED) <Latest_Collection_date,ymd_hms(DATE_COLLECTED)>=Earliest_Collection_date)
+  return(df1)
+}  
+

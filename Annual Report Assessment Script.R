@@ -76,9 +76,10 @@ write_csv(bind_rows(DBHYDRO_Completeness(PARAMETER_Names(DBHYDRO_Time_Filter(L8F
 write_csv(bind_rows(DBHYDRO_Completeness_Parameters(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
                     ERDP_Completeness_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA))),path="./DQO Files/Completeness_Parameters.csv")  #Completeness with Parameters
 
-#No replicate samples collected? 
+#No replicate samples collected WY21? 
 #Precision
 write_csv(na.omit(bind_rows(ERDP_Precision(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA)))),path="./DQO Files/Precision.csv")   
+
 #Precision
 write_csv(bind_rows(DBHYDRO_Precision_Parameters(PARAMETER_Names(DBHYDRO_Time_Filter(L8FEBOG_DBHYDRO_SAMPLE_WITH_QC_VIEW))),
                     ERDP_Precision_Parameters(ERDP_Time_Filter(PDYNAMICS_ERDP_WQ_DATA)),

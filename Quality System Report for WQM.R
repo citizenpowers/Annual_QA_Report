@@ -17,6 +17,8 @@ library(viridis)
 library(Hmisc)
 library(ggpmisc)
 library(ggrepel)
+library(knitr)
+library(kableExtra)
 
 # Import data -------------------------------------------------------------
 
@@ -235,3 +237,10 @@ DBHYDRO_Accuracy <-function(df)
               `Total Blank Hits (%)`=percent(`Total Blank Hits`/`Total Samples`))  
   return(df1)
 }  
+
+
+
+# Knit Report -------------------------------------------------------------
+
+
+rmarkdown::render("Exploration of WQM Data Quality in 2021.Rmd", envir=.GlobalEnv)

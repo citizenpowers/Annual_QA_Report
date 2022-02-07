@@ -18,13 +18,11 @@ This is a exploration of the data in DBHYDRO collected in 2021.It is meant to pr
 
 ##Summary of the Data
 
-### Who is collecting data? and how much?
+#### Who is collecting data? and how much?
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
-
-
 DBHYDRO_data_2021 %>%
 group_by(COLLECTION_AGENCY) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`))
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 ###What methods are used to collect data?
@@ -32,13 +30,13 @@ summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_da
 #Distinct collection Methods
 DBHYDRO_data_2021 %>%
 group_by(COLLECT_METHOD) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`))
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ### How is data validated? 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(VALIDATION_LEVEL) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`))
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 
@@ -50,50 +48,50 @@ summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_da
 
 DBHYDRO_data_2021 %>%
 group_by(FLAG) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1))  %>% arrange(desc(`Number of Records`))
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1))  %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ###Distinct QC Flags by parameter and method (Top 25)
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(TEST_NAME,COLLECT_METHOD,FLAG) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% filter(FLAG=="yes")  %>% arrange(desc(`Number of Records`)) %>% ungroup %>% slice_head(n=25) 
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% filter(FLAG=="yes")  %>% arrange(desc(`Number of Records`)) %>% ungroup %>% slice_head(n=25) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ###Distinct Remark Codes
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(REMARK_CODE) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01))
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ###Data Quality Objective completeness
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 
-Completeness(DBHYDRO_data_2021) %>% arrange(desc(`Total Blanks`/Samples))
+Completeness(DBHYDRO_data_2021) %>% arrange(desc(`Total Blanks`/Samples)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 ###Data Quality Objective completeness by parameter (Top 100)
 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 
-Completeness_Parameters(DBHYDRO_data_2021) %>% filter(is.finite(`Total Blanks`/Samples)) %>% arrange(desc(`Total Blanks`/Samples)) %>% ungroup %>% slice_head(n=100)
+Completeness_Parameters(DBHYDRO_data_2021) %>% filter(is.finite(`Total Blanks`/Samples)) %>% arrange(desc(`Total Blanks`/Samples)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ###DQO Precision  (Top 100)
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
-Precision %>% arrange(desc(as.numeric(gsub("%", "",`Average Parameter RSD`))/100)) %>% ungroup %>% slice_head(n=100)
+Precision %>% arrange(desc(as.numeric(gsub("%", "",`Average Parameter RSD`))/100)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 ###DQO Precision parameters by project code and collection agency (Top 100)
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
-Precision_Parameters  %>%  filter(is.finite(as.numeric(gsub("%", "",`Mean RSD`)))) %>% arrange(desc(as.numeric(gsub("%", "",`Mean RSD`))/100)) %>% ungroup %>% slice_head(n=100)
+Precision_Parameters  %>%  filter(is.finite(as.numeric(gsub("%", "",`Mean RSD`)))) %>% arrange(desc(as.numeric(gsub("%", "",`Mean RSD`))/100)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
-###DQO Blank Contamination   (Paramters with % hits > 0.1)
+###DQO Blank Contamination   (Parameters with % hits > 0.1)
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
-Accuracy  %>% arrange(desc(as.numeric(gsub("%", "",`Total Blank Hits (%)`)))) %>% filter(as.numeric(gsub("%", "",`Total Blank Hits (%)`))>0)
+Accuracy  %>% arrange(desc(as.numeric(gsub("%", "",`Total Blank Hits (%)`)))) %>% filter(as.numeric(gsub("%", "",`Total Blank Hits (%)`))>0) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 ###DQO Blank Contamination parameters by project code and collection agency (Top 100)
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
-Accuracy_Parameters %>%  filter(is.finite(as.numeric(gsub("%", "",`% Blank Hits`)))) %>% arrange(desc(as.numeric(gsub("%", "",`% Blank Hits`))/100)) %>% ungroup %>% slice_head(n=100)
+Accuracy_Parameters %>%  filter(is.finite(as.numeric(gsub("%", "",`% Blank Hits`)))) %>% arrange(desc(as.numeric(gsub("%", "",`% Blank Hits`))/100)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 

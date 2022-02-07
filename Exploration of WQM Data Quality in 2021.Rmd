@@ -11,21 +11,25 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ##Introduction
-WQM generates a high volume of environmental data, the vast majority of very high quality. When describing only the quantity of the data the quality of is missed. This diminishes the effort and expertise that went into the creation of this data which should be rightly celebrated. Additonally a systematic review of data quality would be better spot issues of concern which can then be addressed. 
+WQM generates a high volume of environmental data, the vast majority of very high quality. When describing only the quantity, the quality of the data is missed. This diminishes the effort and expertise that went into the creation of this data which should be recognized. Additionally, a systematic review of data quality would be better spot issues of concern which can then be addressed.
 
-This is a exploration of the data in DBHYDRO collected in 2021.It is meant to provide examples of how a data could be described. It is not a complete or systematic review of 2021 data, nor has it been reviewed for errors. It is only here to provide ideas for future data assessments. 
+This is an exploration of the data in DBHYDRO collected in 2021.It is meant to provide examples of how a data could be described. It is not a complete or systematic review of 2021 data, nor has it been reviewed for errors. It is only here to provide ideas for future data descriptions.
+
+The data in this exploration is separated into two main components. First being a quantitative attempt to answer following questions; how much data was generated? who generated? what methods were used in collection of the data? what level of validation did data go through? The second component attempts to analyze the quality of data. Quality of data can be measured by he percent of data that is qualified. And a more in-depth analysis of data quality using data quality objectives (DQOs) was attempted. The DQOs used to evaluate the data were completeness, precision, and contamination for grab samples only. These DQOs can be defined however you would like.  For the purposes of this example completeness was defined as each project containing at least 5% QC blanks. Precision is calculated by the relative standard deviation (RSD) of replicate samples, the criteria for RSD probably should be determined by analyte and I don't attempt to do this but in general lower RSD is more precise therefore better. Contamination was calculated by the percentage of samples that were within 10-fold of a contaminated QC Blank. Again, I don't put a specify what level of contamination is acceptable but lower is better.
 
 
 ##Summary of the Data
-
-#### Who is collecting data? and how much?
+All data was downloaded from WREP database SAMPLE_WITH_QC_VIEW 2/5/22. 
+###Who is collects? 
+90% is collected by District staff. 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(COLLECTION_AGENCY) %>%
 summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
-###What methods are used to collect data?
+###What methods are used?
+The vast majority of records are of Grab sampliung method
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 #Distinct collection Methods
 DBHYDRO_data_2021 %>%
@@ -33,6 +37,7 @@ group_by(COLLECT_METHOD) %>%
 summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ### How is data validated? 
+Almost all data is validated to level 2. 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(VALIDATION_LEVEL) %>%
@@ -41,55 +46,65 @@ summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_da
 
 
 ##Data Quality
-
+Only grab sample data was evaluated in the following analyis. 
 
 ###Distinct QC Flags
+Most data isn't flagged.
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 
 DBHYDRO_data_2021 %>%
 group_by(FLAG) %>%
 summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1))  %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
-###Distinct QC Flags by parameter and method (Top 25)
+###Distinct QC Flags by parameter and method
+Which methods and analytes make up the majority of the flagged data. Only top 50 results shown. 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(TEST_NAME,COLLECT_METHOD,FLAG) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% filter(FLAG=="yes")  %>% arrange(desc(`Number of Records`)) %>% ungroup %>% slice_head(n=25) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% filter(FLAG=="yes")  %>% arrange(desc(`Number of Records`)) %>% ungroup %>% slice_head(n=50) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ###Distinct Remark Codes
+Which remark codes are used most frequently? Ignore 'NA' in this table as it indicates an absence of a remark code. Also when more than one remark was reported on a single observation i is counted as a seperate remark. This would need to be fixed before using in acutal report. 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 DBHYDRO_data_2021 %>%
 group_by(REMARK_CODE) %>%
-summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% arrange(desc(`Number of Records`)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 ###Data Quality Objective completeness
+Are projects collecting the required amount of QC blanks?  
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 
 Completeness(DBHYDRO_data_2021) %>% arrange(desc(`Total Blanks`/Samples)) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
-###Data Quality Objective completeness by parameter (Top 100)
-
+###Data Quality Objective completeness by parameter 
+Are blanks being collected for every analyste? Only top 100 results shown. 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 
 Completeness_Parameters(DBHYDRO_data_2021) %>% filter(is.finite(`Total Blanks`/Samples)) %>% arrange(desc(`Total Blanks`/Samples)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
-###DQO Precision  (Top 100)
+###DQO Precision  
+RSD was calculated for every replicate set of samples. Many projects had more than 1 set of replicates. In these cases the average RSD of every set was calculated. Only top 100 results shown.  
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 Precision %>% arrange(desc(as.numeric(gsub("%", "",`Average Parameter RSD`))/100)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
 ###DQO Precision parameters by project code and collection agency (Top 100)
+The mean RSD of every project by analyte. The number of'Replicate Samples' refers to the sets of replicate samples used to calcuate a mean RSD. Only top 100 samples shown. 
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 Precision_Parameters  %>%  filter(is.finite(as.numeric(gsub("%", "",`Mean RSD`)))) %>% arrange(desc(as.numeric(gsub("%", "",`Mean RSD`))/100)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
-###DQO Blank Contamination   (Parameters with % hits > 0.1)
+###DQO Blank Contamination   
+Analytes with the highest percentage of data that should be qualified as result of QC blank contamination. Only project analytes with over 0.1% of data qualified shown. 
+
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 Accuracy  %>% arrange(desc(as.numeric(gsub("%", "",`Total Blank Hits (%)`)))) %>% filter(as.numeric(gsub("%", "",`Total Blank Hits (%)`))>0) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
-###DQO Blank Contamination parameters by project code and collection agency (Top 100)
+###DQO Blank Contamination parameters by project code and collection agency 
+Contamination by analye and project. Only top 100 shown. 
+
 ```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
 Accuracy_Parameters %>%  filter(is.finite(as.numeric(gsub("%", "",`% Blank Hits`)))) %>% arrange(desc(as.numeric(gsub("%", "",`% Blank Hits`))/100)) %>% ungroup %>% slice_head(n=100) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover")) 
 ```

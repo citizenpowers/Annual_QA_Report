@@ -113,7 +113,7 @@ mutate(`G or I Qualified`=ifelse(str_detect(REMARK_CODE,c("G","I")),1,0))  %>%
 mutate(`FCEB within 10x sample`=ifelse(SAMPLE_TYPE_NEW=="SAMP",ifelse(is.finite(FCEB),ifelse(VALUE<=FCEB*10 & VALUE >0,1,0),0),0)) %>% 
 mutate(`EB within 10x sample`=ifelse(SAMPLE_TYPE_NEW=="SAMP",ifelse(is.finite(EB),ifelse(VALUE<=EB*10 & VALUE >0,1,0),0),0)) %>%    
 mutate(`FB within 10x sample`=ifelse(SAMPLE_TYPE_NEW=="SAMP",ifelse(is.finite(FB),ifelse(VALUE<=FB*10 & VALUE >0,1,0),0),0)) %>%      
-mutate(`Blank Hits`=if_else( `FCEB within 10x sample`+`EB within 10x sample`+`FB within 10x sample`+`EB greater than MDL`+`FCEB greater than MDL`+`FB greater than MDL`>=2 ,1,0)) %>%
+mutate(`Blank Hits`=ifelse(SAMPLE_TYPE_NEW=="SAMP",if_else( `FCEB within 10x sample`+`EB within 10x sample`+`FB within 10x sample`+`EB greater than MDL`+`FCEB greater than MDL`+`FB greater than MDL`>=2 ,1,0),0)) %>%
 group_by(PROJECT_CODE,COLLECTION_AGENCY,TEST_NAME) %>%
 summarise(`Samples`=sum(if_else(SAMPLE_TYPE_NEW=="SAMP" ,1,0),na.rm=TRUE), 
           `FCEB`=sum(if_else(SAMPLE_TYPE_NEW=="FCEB" ,1,0),na.rm=TRUE),

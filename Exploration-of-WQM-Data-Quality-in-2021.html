@@ -187,13 +187,13 @@ summary {
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>WQM generates a high volume of environmental data, the vast majority of very high quality. When describing only the quantity of the data the quality of is missed. This diminishes the effort and expertise that went into the creation of this data which should be rightly celebrated. Additonally a systematic review of data quality would be better spot issues of concern which can then be addressed.</p>
-<p>This is a exploration of the data in DBHYDRO collected in 2021.It is meant to provide examples of how a data could be described. It is not a complete or systematic review of 2021 data, nor has it been reviewed for errors. It is only here to provide ideas for future data assessments.</p>
+<p>WQM generates a high volume of environmental data, the vast majority of very high quality. When describing only the quantity, the quality of the data is missed. This diminishes the effort and expertise that went into the creation of this data which should be recognized. Additionally, a systematic review of data quality would be better spot issues of concern which can then be addressed.</p>
+<p>This is an exploration of the data in DBHYDRO collected in 2021.It is meant to provide examples of how a data could be described. It is not a complete or systematic review of 2021 data, nor has it been reviewed for errors. It is only here to provide ideas for future data descriptions.</p>
+<p>The data in this exploration is separated into two main components. First being a quantitative attempt to answer following questions; how much data was generated? who generated? what methods were used in collection of the data? what level of validation did data go through? The second component attempts to analyze the quality of data. Quality of data can be measured by he percent of data that is qualified. And a more in-depth analysis of data quality using data quality objectives (DQOs) was attempted. The DQOs used to evaluate the data were completeness, precision, and contamination for grab samples only. These DQOs can be defined however you would like. For the purposes of this example completeness was defined as each project containing at least 5% QC blanks. Precision is calculated by the relative standard deviation (RSD) of replicate samples, the criteria for RSD probably should be determined by analyte and I don't attempt to do this but in general lower RSD is more precise therefore better. Contamination was calculated by the percentage of samples that were within 10-fold of a contaminated QC Blank. Again, I don't put a specify what level of contamination is acceptable but lower is better.</p>
 </div>
 <div id="summary-of-the-data" class="section level2">
 <h2>Summary of the Data</h2>
-<div id="who-is-collecting-data-and-how-much" class="section level4">
-<h4>Who is collecting data? and how much?</h4>
+All data was downloaded from WREP database SAMPLE_WITH_QC_VIEW 2/5/22. ###Who is collects? 90% is collected by District staff.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -365,9 +365,9 @@ ESA
 </tr>
 </tbody>
 </table>
-</div>
-<div id="what-methods-are-used-to-collect-data" class="section level3">
-<h3>What methods are used to collect data?</h3>
+<div id="what-methods-are-used" class="section level3">
+<h3>What methods are used?</h3>
+The vast majority of records are of Grab sampliung method
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -542,6 +542,7 @@ MAN
 </div>
 <div id="how-is-data-validated" class="section level3">
 <h3>How is data validated?</h3>
+Almost all data is validated to level 2.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -596,8 +597,10 @@ Percent of Total
 </div>
 <div id="data-quality" class="section level2">
 <h2>Data Quality</h2>
+<p>Only grab sample data was evaluated in the following analyis.</p>
 <div id="distinct-qc-flags" class="section level3">
 <h3>Distinct QC Flags</h3>
+Most data isn't flagged.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -638,8 +641,9 @@ yes
 </tbody>
 </table>
 </div>
-<div id="distinct-qc-flags-by-parameter-and-method-top-25" class="section level3">
-<h3>Distinct QC Flags by parameter and method (Top 25)</h3>
+<div id="distinct-qc-flags-by-parameter-and-method" class="section level3">
+<h3>Distinct QC Flags by parameter and method</h3>
+Which methods and analytes make up the majority of the flagged data. Only top 50 results shown.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1086,11 +1090,437 @@ yes
 0.02%
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+SURFACTANTS (DETERGENTS)
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+0.02%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NALED
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+0.02%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTAL NITROGEN
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+0.02%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AZINPHOS METHYL
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+0.02%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NITRITE-N
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POTASSIUM
+</td>
+<td style="text-align:left;">
+PKR
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PHOSPHATE, DISSOLVED AS P
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PH, LAB
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ALDRIN
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+METHOXYCHLOR
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PERMETHRIN
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Temperature
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENDRIN
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOXAPHENE
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHLOROTHALONIL
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DDD-P,P'
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DDE-P,P'
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DDT-P,P'
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DICOFOL
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DIELDRIN
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BHC ALPHA
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BHC BETA
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BHC DELTA
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BHC GAMMA
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CARBOPHENOTHION
+</td>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:left;">
+yes
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 <div id="distinct-remark-codes" class="section level3">
 <h3>Distinct Remark Codes</h3>
+Which remark codes are used most frequently? Ignore 'NA' in this table as it indicates an absence of a remark code. Also when more than one remark was reported on a single observation i is counted as a seperate remark. This would need to be fixed before using in acutal report.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1108,6 +1538,292 @@ Percent of Total
 <tbody>
 <tr>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+168771
+</td>
+<td style="text-align:left;">
+74.48%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U
+</td>
+<td style="text-align:right;">
+44141
+</td>
+<td style="text-align:left;">
+19.48%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:right;">
+8420
+</td>
+<td style="text-align:left;">
+3.72%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J
+</td>
+<td style="text-align:right;">
+1748
+</td>
+<td style="text-align:left;">
+0.77%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:right;">
+674
+</td>
+<td style="text-align:left;">
+0.30%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PMR
+</td>
+<td style="text-align:right;">
+537
+</td>
+<td style="text-align:left;">
+0.24%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,J
+</td>
+<td style="text-align:right;">
+522
+</td>
+<td style="text-align:left;">
+0.23%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:right;">
+402
+</td>
+<td style="text-align:left;">
+0.18%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,Q
+</td>
+<td style="text-align:right;">
+393
+</td>
+<td style="text-align:left;">
+0.17%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Q
+</td>
+<td style="text-align:right;">
+206
+</td>
+<td style="text-align:left;">
+0.09%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+L
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:left;">
+0.08%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,G
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:left;">
+0.06%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,J
+</td>
+<td style="text-align:right;">
+107
+</td>
+<td style="text-align:left;">
+0.05%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J,Q
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+0.02%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,PMR
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+0.02%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,Q
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,PMR
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J,L
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J,PMR
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Q,J
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H,J
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NOB
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+0.01%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J,G
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,?
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,Q,J
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 ?
 </td>
 <td style="text-align:right;">
@@ -1119,7 +1835,128 @@ Percent of Total
 </tr>
 <tr>
 <td style="text-align:left;">
+G,PMR
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Q,PMR
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+V
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,Q,G
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,Q,J
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J,Y
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,?,Y
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Q,I
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+U,Y
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 ?,G,Y
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,G,Q
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I,PMR,G
 </td>
 <td style="text-align:right;">
 2
@@ -1152,50 +1989,6 @@ A
 </tr>
 <tr>
 <td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-674
-</td>
-<td style="text-align:left;">
-0.30%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-G,PMR
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-H,J
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I
-</td>
-<td style="text-align:right;">
-8420
-</td>
-<td style="text-align:left;">
-3.72%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 I,?,Y
 </td>
 <td style="text-align:right;">
@@ -1207,65 +2000,10 @@ I,?,Y
 </tr>
 <tr>
 <td style="text-align:left;">
-I,G
-</td>
-<td style="text-align:right;">
-137
-</td>
-<td style="text-align:left;">
-0.06%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I,G,Q
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I,J
-</td>
-<td style="text-align:right;">
-107
-</td>
-<td style="text-align:left;">
-0.05%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 I,J,Q
 </td>
 <td style="text-align:right;">
 1
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I,PMR
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I,PMR,G
-</td>
-<td style="text-align:right;">
-2
 </td>
 <td style="text-align:left;">
 0.00%
@@ -1284,94 +2022,6 @@ I,PMR,J
 </tr>
 <tr>
 <td style="text-align:left;">
-I,Q
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I,Q,G
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-I,Q,J
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-J
-</td>
-<td style="text-align:right;">
-1748
-</td>
-<td style="text-align:left;">
-0.77%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-J,G
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-J,L
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-J,PMR
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-J,Q
-</td>
-<td style="text-align:right;">
-51
-</td>
-<td style="text-align:left;">
-0.02%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 J,Q,PMR
 </td>
 <td style="text-align:right;">
@@ -1379,50 +2029,6 @@ J,Q,PMR
 </td>
 <td style="text-align:left;">
 0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-J,Y
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-L
-</td>
-<td style="text-align:right;">
-185
-</td>
-<td style="text-align:left;">
-0.08%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NOB
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-PMR
-</td>
-<td style="text-align:right;">
-537
-</td>
-<td style="text-align:left;">
-0.24%
 </td>
 </tr>
 <tr>
@@ -1438,54 +2044,10 @@ PMR,J
 </tr>
 <tr>
 <td style="text-align:left;">
-Q
-</td>
-<td style="text-align:right;">
-206
-</td>
-<td style="text-align:left;">
-0.09%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Q,I
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Q,J
-</td>
-<td style="text-align:right;">
-17
-</td>
-<td style="text-align:left;">
-0.01%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Q,J,PMR
 </td>
 <td style="text-align:right;">
 1
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Q,PMR
-</td>
-<td style="text-align:right;">
-6
 </td>
 <td style="text-align:left;">
 0.00%
@@ -1504,61 +2066,6 @@ Q,U
 </tr>
 <tr>
 <td style="text-align:left;">
-S
-</td>
-<td style="text-align:right;">
-402
-</td>
-<td style="text-align:left;">
-0.18%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U
-</td>
-<td style="text-align:right;">
-44141
-</td>
-<td style="text-align:left;">
-19.48%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,?
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,?,Y
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,J
-</td>
-<td style="text-align:right;">
-522
-</td>
-<td style="text-align:left;">
-0.23%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 U,J,Q
 </td>
 <td style="text-align:right;">
@@ -1566,72 +2073,6 @@ U,J,Q
 </td>
 <td style="text-align:left;">
 0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,PMR
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-0.02%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,Q
-</td>
-<td style="text-align:right;">
-393
-</td>
-<td style="text-align:left;">
-0.17%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,Q,J
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-U,Y
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-V
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:left;">
-0.00%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:left;">
-0.01%
 </td>
 </tr>
 <tr>
@@ -1645,22 +2086,13 @@ Y,J
 0.00%
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-168771
-</td>
-<td style="text-align:left;">
-74.48%
-</td>
-</tr>
 </tbody>
 </table>
 </div>
 <div id="data-quality-objective-completeness" class="section level3">
 <h3>Data Quality Objective completeness</h3>
+Are projects collecting the required amount of QC blanks?<br />
+
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1766,6 +2198,38 @@ Inf
 WMD
 </td>
 <td style="text-align:left;">
+CFWI
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+319
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+319
+</td>
+<td style="text-align:left;">
+Inf
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WMD
+</td>
+<td style="text-align:left;">
 HGFS
 </td>
 <td style="text-align:right;">
@@ -1823,38 +2287,6 @@ SEAA
 </td>
 <td style="text-align:left;">
 Inf
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-WMD
-</td>
-<td style="text-align:left;">
-CFWI
-</td>
-<td style="text-align:right;">
-131
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-319
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-319
-</td>
-<td style="text-align:left;">
-244%
 </td>
 </tr>
 <tr>
@@ -2025,10 +2457,10 @@ WMD
 C44RSTA
 </td>
 <td style="text-align:right;">
-180
+172
 </td>
 <td style="text-align:right;">
-68
+64
 </td>
 <td style="text-align:right;">
 0
@@ -2037,16 +2469,16 @@ C44RSTA
 11
 </td>
 <td style="text-align:right;">
-52
+48
 </td>
 <td style="text-align:right;">
-32
+30
 </td>
 <td style="text-align:right;">
-111
+105
 </td>
 <td style="text-align:left;">
-62%
+61%
 </td>
 </tr>
 <tr>
@@ -2207,6 +2639,38 @@ STA6
 </td>
 <td style="text-align:left;">
 45%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WMD
+</td>
+<td style="text-align:left;">
+RFGW
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+44%
 </td>
 </tr>
 <tr>
@@ -2492,38 +2956,6 @@ PSMM
 </td>
 <td style="text-align:right;">
 20
-</td>
-<td style="text-align:left;">
-35%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-WMD
-</td>
-<td style="text-align:left;">
-RFGW
-</td>
-<td style="text-align:right;">
-200
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-70
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-70
 </td>
 <td style="text-align:left;">
 35%
@@ -4548,8 +4980,9 @@ SLT
 </tbody>
 </table>
 </div>
-<div id="data-quality-objective-completeness-by-parameter-top-100" class="section level3">
-<h3>Data Quality Objective completeness by parameter (Top 100)</h3>
+<div id="data-quality-objective-completeness-by-parameter" class="section level3">
+<h3>Data Quality Objective completeness by parameter</h3>
+Are blanks being collected for every analyste? Only top 100 results shown.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8092,8 +8525,10 @@ PHOSPHATE, DISSOLVED AS P
 </tbody>
 </table>
 </div>
-<div id="dqo-precision-top-100" class="section level3">
-<h3>DQO Precision (Top 100)</h3>
+<div id="dqo-precision" class="section level3">
+<h3>DQO Precision</h3>
+RSD was calculated for every replicate set of samples. Many projects had more than 1 set of replicates. In these cases the average RSD of every set was calculated. Only top 100 results shown.<br />
+
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8911,6 +9346,7 @@ CARBON, TOTAL ORGANIC
 </div>
 <div id="dqo-precision-parameters-by-project-code-and-collection-agency-top-100" class="section level3">
 <h3>DQO Precision parameters by project code and collection agency (Top 100)</h3>
+The mean RSD of every project by analyte. The number of'Replicate Samples' refers to the sets of replicate samples used to calcuate a mean RSD. Only top 100 samples shown.
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10635,8 +11071,9 @@ CHLOROPHYLL-B (LC)
 </tbody>
 </table>
 </div>
-<div id="dqo-blank-contamination-paramters-with-hits-0.1" class="section level3">
-<h3>DQO Blank Contamination (Paramters with % hits &gt; 0.1)</h3>
+<div id="dqo-blank-contamination" class="section level3">
+<h3>DQO Blank Contamination</h3>
+<p>Analytes with the highest percentage of data that should be qualified as result of QC blank contamination. Only project analytes with over 0.1% of data qualified shown.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10896,8 +11333,9 @@ CHLOROPHYLL-A(LC)
 </tbody>
 </table>
 </div>
-<div id="dqo-blank-contamination-parameters-by-project-code-and-collection-agency-top-100" class="section level3">
-<h3>DQO Blank Contamination parameters by project code and collection agency (Top 100)</h3>
+<div id="dqo-blank-contamination-parameters-by-project-code-and-collection-agency" class="section level3">
+<h3>DQO Blank Contamination parameters by project code and collection agency</h3>
+<p>Contamination by analye and project. Only top 100 shown.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>

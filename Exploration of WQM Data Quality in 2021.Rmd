@@ -1,0 +1,104 @@
+---
+title: "Exploration of WQM Data Quality in 2021"
+author: "Matt Powers"
+date: "February 6, 2022"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Introduction
+WQM generates a high volume of environmental data, the vast majority of very high quality. When describing only the quantity of the data the quality of is missed. This diminishes the effort and expertise that went into the creation of this data which should be rightly celebrated. Additonally a systematic review of data quality would be better spot issues of concern which can then be addressed. 
+
+This is a exploration of the data in DBHYDRO collected in 2021.It is meant to provide examples of how a data could be described. It is not a complete or systematic review of 2021 data, nor has it been reviewed for errors. It is only here to provide ideas for future data assessments. 
+
+
+##Summary of the Data
+
+### Who is collecting data? and how much?
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+
+
+DBHYDRO_data_2021 %>%
+group_by(COLLECTION_AGENCY) %>%
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`))
+```
+
+###What methods are used to collect data?
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+#Distinct collection Methods
+DBHYDRO_data_2021 %>%
+group_by(COLLECT_METHOD) %>%
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`))
+```
+### How is data validated? 
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+DBHYDRO_data_2021 %>%
+group_by(VALIDATION_LEVEL) %>%
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1)) %>% arrange(desc(`Number of Records`))
+```
+
+
+##Data Quality
+
+
+###Distinct QC Flags
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+
+DBHYDRO_data_2021 %>%
+group_by(FLAG) %>%
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.1))  %>% arrange(desc(`Number of Records`))
+```
+###Distinct QC Flags by parameter and method (Top 25)
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+DBHYDRO_data_2021 %>%
+group_by(TEST_NAME,COLLECT_METHOD,FLAG) %>%
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01)) %>% filter(FLAG=="yes")  %>% arrange(desc(`Number of Records`)) %>% ungroup %>% slice_head(n=25) 
+```
+###Distinct Remark Codes
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+DBHYDRO_data_2021 %>%
+group_by(REMARK_CODE) %>%
+summarise(`Number of Records`=n(),`Percent of Total`=percent(n()/nrow(DBHYDRO_data_2021),accuracy = 0.01))
+```
+###Data Quality Objective completeness
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+
+Completeness(DBHYDRO_data_2021) %>% arrange(desc(`Total Blanks`/Samples))
+```
+
+###Data Quality Objective completeness by parameter (Top 100)
+
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+
+Completeness_Parameters(DBHYDRO_data_2021) %>% filter(is.finite(`Total Blanks`/Samples)) %>% arrange(desc(`Total Blanks`/Samples)) %>% ungroup %>% slice_head(n=100)
+```
+###DQO Precision  (Top 100)
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+Precision %>% arrange(desc(as.numeric(gsub("%", "",`Average Parameter RSD`))/100)) %>% ungroup %>% slice_head(n=100)
+```
+
+###DQO Precision parameters by project code and collection agency (Top 100)
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+Precision_Parameters  %>%  filter(is.finite(as.numeric(gsub("%", "",`Mean RSD`)))) %>% arrange(desc(as.numeric(gsub("%", "",`Mean RSD`))/100)) %>% ungroup %>% slice_head(n=100)
+```
+
+###DQO Blank Contamination   (Paramters with % hits > 0.1)
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+Accuracy  %>% arrange(desc(as.numeric(gsub("%", "",`Total Blank Hits (%)`)))) %>% filter(as.numeric(gsub("%", "",`Total Blank Hits (%)`))>0)
+```
+
+###DQO Blank Contamination parameters by project code and collection agency (Top 100)
+```{r, echo = FALSE,warning=FALSE,Include=FALSE,message=FALSE}
+Accuracy_Parameters %>%  filter(is.finite(as.numeric(gsub("%", "",`% Blank Hits`)))) %>% arrange(desc(as.numeric(gsub("%", "",`% Blank Hits`))/100)) %>% ungroup %>% slice_head(n=100)
+```
+
+
+
+
+
+
+
